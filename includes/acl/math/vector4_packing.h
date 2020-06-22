@@ -636,7 +636,7 @@ namespace acl
 		const float max_value = float((1 << 16) - 1);
 		const float inv_max_value = 1.0F / max_value;
 
-		const rtm::vector4f packed = rtm::vector_symmetric_round(rtm::vector_mul(input, max_value));
+		const rtm::vector4f packed = rtm::vector_round_symmetric(rtm::vector_mul(input, max_value));
 		const rtm::vector4f decayed = rtm::vector_mul(packed, inv_max_value);
 		return decayed;
 	}
@@ -651,7 +651,7 @@ namespace acl
 		const float max_value = rtm::scalar_safe_to_float((1 << 16) - 1);
 		const float inv_max_value = 1.0F / max_value;
 
-		const rtm::vector4f packed = rtm::vector_symmetric_round(rtm::vector_mul(unsigned_input, max_value));
+		const rtm::vector4f packed = rtm::vector_round_symmetric(rtm::vector_mul(unsigned_input, max_value));
 		const rtm::vector4f decayed = rtm::vector_mul(packed, inv_max_value);
 		return rtm::vector_neg_mul_sub(decayed, -2.0F, rtm::vector_set(-1.0F));
 	}
@@ -683,7 +683,7 @@ namespace acl
 		const rtm::vector4f max_value = rtm::vector_set(max_value_x, max_value_y, max_value_z, max_value_z);
 		const rtm::vector4f inv_max_value = rtm::vector_reciprocal(max_value);
 
-		const rtm::vector4f packed = rtm::vector_symmetric_round(rtm::vector_mul(input, max_value));
+		const rtm::vector4f packed = rtm::vector_round_symmetric(rtm::vector_mul(input, max_value));
 		const rtm::vector4f decayed = rtm::vector_mul(packed, inv_max_value);
 		return decayed;
 	}
@@ -702,7 +702,7 @@ namespace acl
 		const rtm::vector4f max_value = rtm::vector_set(max_value_x, max_value_y, max_value_z, max_value_z);
 		const rtm::vector4f inv_max_value = rtm::vector_reciprocal(max_value);
 
-		const rtm::vector4f packed = rtm::vector_symmetric_round(rtm::vector_mul(unsigned_input, max_value));
+		const rtm::vector4f packed = rtm::vector_round_symmetric(rtm::vector_mul(unsigned_input, max_value));
 		const rtm::vector4f decayed = rtm::vector_mul(packed, inv_max_value);
 		return rtm::vector_neg_mul_sub(decayed, -2.0F, rtm::vector_set(-1.0F));
 	}
@@ -831,7 +831,7 @@ namespace acl
 		const float max_value = rtm::scalar_safe_to_float((1 << num_bits) - 1);
 		const float inv_max_value = 1.0F / max_value;
 
-		const rtm::vector4f packed = rtm::vector_symmetric_round(rtm::vector_mul(input, max_value));
+		const rtm::vector4f packed = rtm::vector_round_symmetric(rtm::vector_mul(input, max_value));
 		const rtm::vector4f decayed = rtm::vector_mul(packed, inv_max_value);
 		return decayed;
 	}
@@ -846,7 +846,7 @@ namespace acl
 		const float max_value = rtm::scalar_safe_to_float((1 << num_bits) - 1);
 		const float inv_max_value = 1.0F / max_value;
 
-		const rtm::vector4f packed = rtm::vector_symmetric_round(rtm::vector_mul(unsigned_input, max_value));
+		const rtm::vector4f packed = rtm::vector_round_symmetric(rtm::vector_mul(unsigned_input, max_value));
 		const rtm::vector4f decayed = rtm::vector_mul(packed, inv_max_value);
 		return rtm::vector_neg_mul_sub(decayed, -2.0F, rtm::vector_set(-1.0F));
 	}

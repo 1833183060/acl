@@ -113,7 +113,7 @@ namespace acl
 
 				// Check if min0 is below or equal to our original range minimum value, if it is, it is good
 				// enough to use otherwise min1 is guaranteed to be lower.
-				const rtm::mask4i is_min0_lower_mask = rtm::vector_less_equal(padded_range_min0, range_min);
+				const rtm::mask4f is_min0_lower_mask = rtm::vector_less_equal(padded_range_min0, range_min);
 				const rtm::vector4f padded_range_min = rtm::vector_select(is_min0_lower_mask, padded_range_min0, padded_range_min1);
 
 				// The story is different for the extent. We do not store the max, instead we use the extent
@@ -132,7 +132,7 @@ namespace acl
 
 				// Check if extent0 is above or equal to our original range maximum value, if it is, it is good
 				// enough to use otherwise extent1 is guaranteed to be higher.
-				const rtm::mask4i is_extent0_higher_mask = rtm::vector_greater_equal(padded_range_extent0, range_max);
+				const rtm::mask4f is_extent0_higher_mask = rtm::vector_greater_equal(padded_range_extent0, range_max);
 				const rtm::vector4f padded_range_extent = rtm::vector_select(is_extent0_higher_mask, padded_range_extent0, padded_range_extent1);
 
 				return TrackStreamRange::from_min_extent(padded_range_min, padded_range_extent);
@@ -165,7 +165,7 @@ namespace acl
 		{
 			const rtm::vector4f range_min = range.get_min();
 			const rtm::vector4f range_extent = range.get_extent();
-			const rtm::mask4i is_range_zero_mask = rtm::vector_less_than(range_extent, rtm::vector_set(0.000000001F));
+			const rtm::mask4f is_range_zero_mask = rtm::vector_less_than(range_extent, rtm::vector_set(0.000000001F));
 
 			rtm::vector4f normalized_sample = rtm::vector_div(rtm::vector_sub(sample, range_min), range_extent);
 			// Clamp because the division might be imprecise
@@ -194,7 +194,7 @@ namespace acl
 
 				const rtm::vector4f range_min = bone_range.rotation.get_min();
 				const rtm::vector4f range_extent = bone_range.rotation.get_extent();
-				const rtm::mask4i is_range_zero_mask = rtm::vector_less_than(range_extent, rtm::vector_set(0.000000001F));
+				const rtm::mask4f is_range_zero_mask = rtm::vector_less_than(range_extent, rtm::vector_set(0.000000001F));
 
 				for (uint32_t sample_index = 0; sample_index < num_samples; ++sample_index)
 				{
@@ -246,7 +246,7 @@ namespace acl
 
 				const rtm::vector4f range_min = bone_range.translation.get_min();
 				const rtm::vector4f range_extent = bone_range.translation.get_extent();
-				const rtm::mask4i is_range_zero_mask = rtm::vector_less_than(range_extent, rtm::vector_set(0.000000001F));
+				const rtm::mask4f is_range_zero_mask = rtm::vector_less_than(range_extent, rtm::vector_set(0.000000001F));
 
 				for (uint32_t sample_index = 0; sample_index < num_samples; ++sample_index)
 				{
@@ -287,7 +287,7 @@ namespace acl
 
 				const rtm::vector4f range_min = bone_range.scale.get_min();
 				const rtm::vector4f range_extent = bone_range.scale.get_extent();
-				const rtm::mask4i is_range_zero_mask = rtm::vector_less_than(range_extent, rtm::vector_set(0.000000001F));
+				const rtm::mask4f is_range_zero_mask = rtm::vector_less_than(range_extent, rtm::vector_set(0.000000001F));
 
 				for (uint32_t sample_index = 0; sample_index < num_samples; ++sample_index)
 				{

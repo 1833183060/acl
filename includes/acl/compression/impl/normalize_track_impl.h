@@ -51,7 +51,7 @@ namespace acl
 
 			const vector4f range_min = range.get_min();
 			const vector4f range_extent = range.get_extent();
-			const mask4i is_range_zero_mask = vector_less_than(range_extent, rtm::vector_set(0.000000001F));
+			const mask4f is_range_zero_mask = vector_less_than(range_extent, rtm::vector_set(0.000000001F));
 
 			for (uint32_t sample_index = 0; sample_index < num_samples; ++sample_index)
 			{
